@@ -36,3 +36,34 @@ summary(plm)
 llm = glm(log10y ~ x, family = 'gaussian', data = data)
 # intercept & slope are way off
 summary(llm)
+
+
+# New Attempt
+
+# Data generation borrowed from StackExchange user ocram 
+#sample size
+n <- 100
+#regression coefficients
+beta0 <- 1
+beta1 <- 0.2
+#generate covariate values
+x <- runif(n=n, min=10, max=11.5)
+#compute mu's
+mu <- exp(beta0 + beta1 * x)
+#generate Y-values
+y <- rpois(n=n, lambda=mu)
+#data set
+data <- data.frame(y=y, x=x, logy=log(y))
+data
+
+plot(density(data$y))
+plot(density(log(data$y)))
+plot(density(data$logy))
+
+plm = glm(y ~ x, family = poisson, data = data)
+summary(plm)
+
+llm = glm(logy ~ x, family = gaussian, data = data)
+summary(llm)
+
+llm$coefficients
