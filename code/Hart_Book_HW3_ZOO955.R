@@ -1,4 +1,4 @@
-#Hart & Book HW3 ZOO955
+#Hart & Book HW3 ZOO955 new
 require(tidyverse)
 
 #create a data frame to store simulation data
